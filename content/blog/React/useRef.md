@@ -1,6 +1,6 @@
 ---
 title: 'useRef로 여러 개의 DOM 제어하기'
-date: 2022-05-12 16:05:76
+date: 2021-06-18 16:05:76
 category: React
 thumbnail: { thumbnailSrc }
 draft: false

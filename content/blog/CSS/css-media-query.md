@@ -1,8 +1,8 @@
 ---
-title: 'CSS Media Query와 반응형'
+title: '[CSS] CSS Media Query와 반응형'
 date: 2021-04-10 15:05:98
 description: 'hi'
-category: css
+category: CSS
 thumbnail: { thumbnailSrc }
 draft: false
 ---
@@ -85,9 +85,8 @@ draft: false
 2)  미디어 특성 표현식
 
 미디어 특성은 사용자 에이전트, 출력 장치, 환경 등의 특징을 나타냅니다. 미디어 특성 표현식은 선택 사항이며 특성의 존재 여부와 값을 판별합니다. 각각의 미디어 특성 표현식은 괄호로 감싸야 합니다. - width: 스크롤바를 포함한 뷰포트 넓이 - height: 뷰포트의 높이 - aspect-ratio: 뷰포트의 가로세로비
-  
-  
- +) 삭제된 표현식
+
++) 삭제된 표현식
 
 - - device-aspect-ratio: 출력장치의 가로세로비
   - device-width: 출력 장치 렌더링 표면의 넓이

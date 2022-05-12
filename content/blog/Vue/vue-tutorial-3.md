@@ -1,7 +1,7 @@
 ---
 title: '[Vue.js 시작하기] #2. Vue <script> 태그 속 내용들'
-date: 2022-11-29 16:20:37
-category: vue
+date: 2021-11-29 16:20:37
+category: Vue
 thumbnail: { thumbnailSrc }
 draft: false
 ---

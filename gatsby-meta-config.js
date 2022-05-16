@@ -17,7 +17,7 @@ module.exports = {
   comment: {
     disqusShortName: '', // Your disqus-short-name. check disqus.com.
     // TODO: instaill utterances
-    utterances: 'chaerin00/react-dynamic-theme-web', // Your repository for archive comment
+    utterances: 'chaerin00/gatsby-blog', // Your repository for archive comment
   },
   configs: {
     countOfInitialPost: 10, // Config your initial count of post

@@ -1,7 +1,7 @@
 ---
 title: 'react-device-detect를 활용하여 모바일 페이지 구현하기'
 date: 2022-03-31 17:05:93
-category: react
+category: React
 thumbnail: { thumbnailSrc }
 draft: false
 ---

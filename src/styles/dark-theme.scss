@@ -8,6 +8,11 @@ body.dark {
     color: $dark-light-font-color;
   }
 
+  .top {
+    background-color: $dark-background-color;
+    border-bottom: 1px solid #fff;
+  }
+
   .bio {
     .author-name-content {
       background-color: $dark-category-border-color;
@@ -53,6 +58,9 @@ body.dark {
     }
     &:hover {
       text-shadow: $dark-hover-text-shadow;
+    }
+    span {
+      color: $dark-link-color;
     }
   }
 

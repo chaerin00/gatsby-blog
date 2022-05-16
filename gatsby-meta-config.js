@@ -1,5 +1,5 @@
 module.exports = {
-  title: `Chaerin00.log`,
+  title: `Chaerin.dev`,
   description: `배운 것들 안 까먹으려고 쓰는 블로그 📕`,
   author: `Chaerin`,
   introduction: `배운 것들 안 까먹으려고 쓰는 블로그 📕`,

@@ -7,6 +7,11 @@ body.light {
     color: $dark-gray;
   }
 
+  .top {
+    background-color: $light-background-color;
+    border-bottom: 1px solid $light-gray;
+  }
+
   .bio {
     .author-name-content {
       background-color: $light-category-border-color;
@@ -52,6 +57,9 @@ body.light {
     }
     &:hover {
       text-shadow: $light-hover-text-shadow;
+    }
+    span {
+      color: $light-link-color;
     }
   }
 

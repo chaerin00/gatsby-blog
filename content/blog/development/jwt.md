@@ -60,4 +60,59 @@ Header에서는 해당 토큰의 type(`typ`)과 HMAC-SHA256 또는 RSA와 같은
 
 ## 2. Payload
 
+```
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "iat": 1516239022
+}
+```
+
+payload 또한 객체의 형식을 가지는데 객체 안의 한쌍의 name-value를 claim이라고 합니다.
+이 claim은 세 종류(registered claims, public claims, private claims)로 나뉘게 됩니다.
+
+- Registered Claims
+
+  Registered Claim은 등록된 claim이라는 뜻으로 예약어와 같이 이미 정의되어있는 claim들을 뜻합니다.
+  이 claim들을 사용하는 것은 optional(사용해도 되고, 안해도 된다는 뜻)입니다.
+
+  Registered Claim에는 다음과 같은 것들이 있습니다.
+
+  ```
+  {
+    "iss": <issuer: 토큰 발급자>,
+    "exp": <expiration time: 토큰 만료시간>,
+    "sub": <subject: 토큰 제목>,
+    "aud": <audience: 토큰 대상자>,
+  }
+  ```
+
+  [기타 registered claims](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1)
+
+* Public Claims
+
+  Public Claims는 공개된 Claim으로 jwt 토큰을 사용하는 사람들에 의해 정의될 수 있습니다.
+  이 Claim의 이름은 충돌을 피하기 위해서 [IANA JSON Web Token Registry](https://www.iana.org/assignments/jwt/jwt.xhtml)에 정의되거나 uri 형식으로 짓게 됩니다.
+
+  ex) public claim의 예시
+
+  ```
+  {
+      "name": "Anna An", // IANA JSON Web Token Registry에 정의되어 있는 Claim
+      "https://chaerin.dev/jwt_claims/is_admin": true
+  }
+
+  ```
+
+* Private Claims
+  Private Claims이란 Registered도 아니고 Public도 아닌, 구성원들 간 합의하여 결정한 claim을 의미합니다.
+  주로 서버 <-> 클라이언트 간에 합의된 claim의 이름을 뜻합니다.
+  ```
+  {
+      "username": "chaerin00"
+  }
+  ```
+
 ## 3. Signature
+
+Signature를 만들기 위해서는 인코딩된 Header, 인코딩된 Payload, secret key, 헤더에 명시된 signing 알고리즘

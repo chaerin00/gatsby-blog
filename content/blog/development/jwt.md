@@ -3,7 +3,7 @@ title: 'JWT Token 이해하기'
 date: 2022-05-19 19:05:89
 category: development
 thumbnail: { thumbnailSrc }
-draft: true
+draft: false
 ---
 
 # Front Auth 로직
@@ -12,7 +12,7 @@ draft: true
 
 1. Login API의 response로 Access Token과 Refresh Token을 받는다.
 2. Access Token과 Refresh 토큰을 local storage나 cookie에 저장한다.
-3. Access Token은 API 호출 시 header의 Authorization에 `Bearer + <Access Token>`형식으로 넣는다
+3. Access Token은 API 호출 시 HTTP Request header의 Authorization 필드에 `Bearer + <Access Token>`형식으로 넣는다
 
 여기서 Access Token과 Refresh Token으로 JWT 토큰을 주로 사용하는데 이 JWT 토큰의 구조를 살펴보도록 하겠습니다.
 
@@ -115,4 +115,21 @@ payload 또한 객체의 형식을 가지는데 객체 안의 한쌍의 name-val
 
 ## 3. Signature
 
-Signature를 만들기 위해서는 인코딩된 Header, 인코딩된 Payload, secret key, 헤더에 명시된 signing 알고리즘
+Header와 Payload는 Base64를 사용하여 인코딩 되고 누구나 decode하여 내용을 볼 수 있습니다.
+그렇기 때문에 토큰을 내용을 다른 사람이 함부로 위조할 수 없도록 토큰의 위조 여부를 검증하기 위해 바로 이 Signature이 존재하는 것입니다.
+Signature를 만들기 위해서는 인코딩된 Header, 인코딩된 Payload, secret key, 헤더에 명시된 signing 알고리즘을 사용합니다.
+
+```
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secret)
+```
+
+위의 예시는 헤더에서 지정한 `HS256` 즉 HMAC SHA256 알고리즘을 이용하여 시그니처를 생성하는 pseudo code 예시입니다.
+
+위에 언급한 Header, Payload, Signature를 모두 `.`으로 연결하면 JWT 토큰이 완성됩니다.
+
+<hr>
+JWT 토큰에 대해 알아보면서 평소 사용하던 Auth 로직의 문제점들을 발견할 수 있었다.
+토큰의 저장 위치나 Refresh Token의 동작 방식도 스스로 더 공부해봐야할 주제인 것 같다.

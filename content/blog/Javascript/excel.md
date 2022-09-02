@@ -1,8 +1,7 @@
 ---
 title: Axios를 이용하여 Excel Download 하는 방법
 date: 2022-09-02 16:09:70
-category: react
-thumbnail: { thumbnailSrc }
+category: javascript
 draft: false
 ---
 

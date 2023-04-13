@@ -8,8 +8,8 @@ draft: false
 
 - [리터럴(Literal)](#리터럴literal)
 - [this, this()](#this-this)
-- [final, static, static final](#final-static-static-final)
 - [super, super()](#super-super)
+- [final, static, static final](#final-static-static-final)
 - [자바의 원시 타입 참조 타입](#자바의-원시-타입-참조-타입)
 
 ## 리터럴(Literal)
@@ -330,6 +330,53 @@ static final double PI = 3.141592;
 
 ## 자바의 원시 타입, 참조 타입
 
+자바의 숫자를 다루기 위한 타입은 원시타입(Primitive type), 참조타입(Reference type) 크게 두가지로 나뉜다.
+
+1. 원시타입
+
+> int, double, boolean...
+
+2. 참조타입
+
+> Integer, Double, Boolean...
+
+```java
+int i = Integer.valueOf(1);
+Integer integer = i;
 ```
 
-```
+사실 원시타입과 참조타입은 함께 사용해도 오토박싱, 언박싱이 되기 때문에 함께 사용해도 큰 어려움이 없다.
+
+그러나 이 둘은 실제 코드 구현 시에 차이가 있다.
+
+1. Null 할당 가능 여부
+
+   ```java
+   int i = null;//불가능
+   Integer integer = null; //가능
+
+   ```
+
+위의 예시와 같이 원시타입은 null을 할당할 수 없다.
+
+2. Generic 타입에서의 사용
+
+   ```java
+   List<int> i;//불가능
+   List<Integer> integer;//가능
+   ```
+
+이런 차이가 생기는 이유는 원시타입은 Stack 메모리에 값이 존재하고, 참조타입은 하나의 인스턴스이기 때문에 다른 클래스 인스턴스들과 마찬가지로 Stack에는 참조값만 존재하고 실제값은 힙메모리에 존재하기 때문이다.
+
+그렇기 때문에 성능에서 차이가 발생한다.
+
+1. 접근속도 <br/>
+   Stack에 바로 값이 존재하는 원시타입은 접근속도가 빠르다. 반면 참조타입은 stack에는 참조값만 있고 실제 값은 heap 영역에 존재하기 때문에 값을 필요로 할 때마다 언박싱의 과정을 거쳐야한다. 그렇기에 참조타입의 접근속도는 원시타입의 접근속도보다 느리다.
+
+   <br/>
+
+2. 차지하는 메모리의 양 <br/>
+   차지하는 메모리의 양도 참조타입이 원시타입보다 많다.
+   ![](./images/primitive-reference.png)
+
+Null을 할당해야 하거나 제네릭 타입으로 사용하는 경우에는 원시타입을 그렇지 않은 경우에는 원시타입을 사용하면 된다.

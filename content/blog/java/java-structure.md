@@ -6,6 +6,12 @@ thumbnail: { thumbnailSrc }
 draft: false
 ---
 
+- [리터럴(Literal)](#리터럴literal)
+- [this, this()](#this-this)
+- [final, static, static final](#final-static-static-final)
+- [super, super()](#super-super)
+- [자바의 원시 타입 참조 타입](#자바의-원시-타입-참조-타입)
+
 ## 리터럴(Literal)
 
 ### 리터럴(Literal)이란?
@@ -67,7 +73,7 @@ int count = 0;
    boolean boolVal = true;
    ```
 
-## **this, this()**
+## this, this()
 
 this는 자기 자신을 가리키는 키워드이다.
 
@@ -115,8 +121,75 @@ this()는 자기 자신의 생성자를 가리키고 같은 클래스에 오버�
 
 위의 예제는 현재 this()가 호출되고 있는 매개변수가 2개인 생성자에서 매개변수가 4개인 생성자를 호출하고 있는 경우이다.
 
-## **final, static, static final**
+## final, static, static final
+
+### final
+
+#### final 변수
+
+변수에 `final`을 붙이면 이 변수는 수정할 수 없다는 의미가 된다. 수정할 수 없기 때문에 초기화가 필수적이고 생성자, static 메소드를 이용한 초기화도 허용된다.
+
+초기화한 후 변경하려고 하면 compile 에러가 난다.
+
+```java
+final String hello = "Hello world";
+
+hello = "See you around" // compile error!
+```
+
+#### final arguments
+
+final로 선언된 인자는 메소드 내에서 변경이 불가능하다. 따라서 다음과 같이 final int로 선언한 number는 읽을 수 있지만, number = 2처럼 값을 변경하려고 하면 컴파일 에러가 발생한다.
+
+```java
+public void func(final int number) {
+    System.out.println(number);
+
+    number = 2; // compile error!
+}
+```
+
+#### final class
+
+클래스에 final을 붙이면 다른 클래스가 상속할 수 없는 클래스가 된다. 다음과 같이 final 클래스를 상속하려고 하면 컴파일 에러 발생한다.
+
+```java
+final class Person {
+    final String name;
+    Person() {
+        this.name = "Chaerin";
+    }
+}
+
+class Student extends Person() { // compile error!
+}
+
+```
+
+#### final method
+
+final 메소드는 Override가 안되도록 한다. 예를 들어 다음과 같이 Person 클래스를 상속하는 Student 클래스에서는 sayHi()를 재정의할 수 없다. Override하려고 하면 컴파일 에러가 발생한다.
+
+```java
+public class Person {
+    final String sayHi() {
+        return "hi";
+    }
+}
+
+class Student extends Person() {
+  @Override
+  String sayHi() { // compile error !
+    return "See you";
+  }
+}
+
+```
 
 ## super, super()
 
 ## 자바의 원시 타입, 참조 타입
+
+```
+
+```

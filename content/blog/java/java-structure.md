@@ -121,6 +121,54 @@ this()는 자기 자신의 생성자를 가리키고 같은 클래스에 오버�
 
 위의 예제는 현재 this()가 호출되고 있는 매개변수가 2개인 생성자에서 매개변수가 4개인 생성자를 호출하고 있는 경우이다.
 
+## super, super()
+
+super는 상속받은 부모를 가리킨다. 부모 클래스로부터 상속받은 필드나 메소드를 자식 클래스에서 참조하는 데 사용된다.
+
+### super
+
+```java
+class Parent { int a = 10; }
+
+class Child extends Parent {
+    int a = 20;
+
+    void display() {
+        System.out.println(a); // 20
+        System.out.println(this.a); // 20
+        System.out.println(super.a); // 10
+
+    }
+
+}
+```
+
+위의 예시와 같이 super 키워드를 사용하면 부모의 필드를 참조할 수 있다.
+
+### super()
+
+`super()`는 부모의 생성자를 호출할 때 사용된다.
+만약 부모에서 기본 생성자가 아닌 매개변수를 가지는 생성자를 하나라도 선언했다면 자식 클래스에서도 동일한 매개변수를 갖는 생성자를 선언해주어야 한다. 이때 super() 사용할 있다.
+
+```java
+class Parent {
+    int a;
+    Parent(int n) {
+       a = n;
+    }
+}
+
+class Child extends Parent {
+    int b;
+    Child() {
+        super();
+        b = 20;
+    }
+}
+```
+
+위와 같이 수정하면 부모 클래스의 멤버에 대한 초기화 코드를 중복하여 작성해주지 않아도 된다.
+
 ## final, static, static final
 
 ### final
@@ -279,8 +327,6 @@ static final double PI = 3.141592;
 ```
 
 `PI` 변수는 객체마다 저장될 필요없고 하나의 값만을 가질 수 있다.
-
-## super, super()
 
 ## 자바의 원시 타입, 참조 타입
 

@@ -49,9 +49,94 @@ public class EmployeePojo {
 
 AOP는 **Aspect Oriented Programming**의 약자로 관점 지향 프로그래밍이라고 불린다. 흩어진 Aspect들을 모아서 모듈화하여 코드의 중복을 줄이는 프로그래밍 기법이다.
 
+![](./images/aop.png)
+
 위의 이미지와 같이 class A, B, C가 있고 각각의 클래스에 중복되는 기능 X, Y, Z(Crosscutting Concerns)들이 있다면 이를 Aspect라는 블럭으로 모듈화 하는 것이다.
 
 코드를 통해 이를 어떻게 구현하는지 알아보자.
+
+build.gradle
+
+```groovy
+implementation 'org.springframework.boot:spring-boot-starter-aop'
+```
+
+spring AOP를 사용해주려면 다음과 같이 의존성을 추가해줘야한다.
+
+```java
+@Component
+@Aspect
+public class PerfAspect {
+
+}
+```
+
+Spring AOP는 Bean에서만 동작하기 때문에 `@Component` Annotation을 사용하여 스프링 Bean으로 등록하여 사용해준다.
+`@Aspect` 어노테이션을 붙이면 해당 클래스가 Aspect라는 것을 명시해준다.
+
+로그를 찍는 기능이 여러 클래스에 공통적으로 구현해야 하는 상황에서 AOP를 어떻게 활용할 수 있을지 예제를 통해 알아보자.
+
+LogGetData.java
+
+```java
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME) // Annotation을 런타임까지 사용
+public @interface LogGetDate {
+
+}
+```
+
+위 코드는 @LogGetData라는 annotation을 만들어주기 위한 코드이다.
+
+LogAspect.java
+
+```java
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import java.util.Date;
+
+@Component
+@Aspect
+public class LogAspect {
+
+	Logger logger = LoggerFactory.getLogger(LogAspect.class); // log
+
+	@Around("@annotation(LogGetDate)") // method 실행 되는 전 과정
+	public Object logGetDate(ProceedingJoinPoint joinPoint) throws Throwable {
+		Date date = new Date();
+		date.getTime(); // 메소드가 실행되는 현재 시간
+
+		Object ret = joinPoint.proceed();
+
+		logger.info(date.toString());
+
+		return ret;
+	}
+}
+```
+
+위의 코드는 LogAspect라는 Aspect를 생성하였고 LogGetData라는 어노테이션이 붙은 method가 실행 되기 전 logGetDate라는 메소드가 실행되는 코드이다.
+
+```java
+@GetMapping("/owners/find")
+@LogGetDate
+public String initFindForm(Map<String, Object> model) {
+    model.put("owner", new Owner());
+    return "owners/findOwners";
+}
+```
+
+위의 코드에서 보면 다음 getAPI가 호출될 때 @LogGetDate 어노테이션이 붙어있으므로 LogAspect가 불리고 initFindForm이 실행되기 전 logGetDate 메소드가 실행되게 된다.
 
 ## 4. PSA (Portable Service Abstraction)
 

@@ -140,4 +140,26 @@ public String initFindForm(Map<String, Object> model) {
 
 ## 4. PSA (Portable Service Abstraction)
 
+PSA는 하나의 추상화로 여러 서비스들을 묶어둔 것이다.
+예를 들어 Spring에는 다양한 annotation들이 있고 이를 활용하면 클래스의 역할을 지정할 뿐 아니라 개발자가 직접 코드를 작성하지 않고도 특정 기능을 수행하게 할 수 있다.
+
+```java
+@RestController
+@RequiredArgsConstructor
+public class PostController {
+    private final PostService postService;
+
+
+    @GetMapping("/post/{postId}")
+    public Post getPost(@PathVariable final Long postId) {
+
+        return postService.getDetail(postId);
+    }
+```
+
+위의 코드를 보면 `@Controller`, `@GetMapping`, `@PostMapping`을 활용하여 요청과 service 로직을 매핑시켜주는 것을 볼 수 있다.
+이것이 가능한 이유는 Spring에서 제공해주는 여러 기능이 annotation 뒤에 숨겨져 있기 때문인데 이것이 바로 서비스 추상화 PSA이다.
+
+위의 예시 뿐만 아니라 `@Transactional`을 사용하면 모든 로직이 성공적으로 수행되었다면 DB에 커밋 만약 아니라면 rollback을 해주는 등 이 PSA 개념을 사용한 Spring의 기능들이 많이 있다.
+
 # Spring의 동작과정

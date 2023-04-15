@@ -1,7 +1,7 @@
 ---
 title: 'Spring boot 정리 #1 - Spring의 4가지 특징'
 date: 2023-04-14 16:04:89
-category: java
+category: SpringBoot
 thumbnail: { thumbnailSrc }
 draft: false
 ---

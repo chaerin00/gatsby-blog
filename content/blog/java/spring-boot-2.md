@@ -1,17 +1,11 @@
 ---
-title: 'Spring boot 정리 #2'
+title: 'Spring boot 정리 #2 - Spring의 동작과정'
 date: 2023-04-14 17:04:15
-category: java
+category: SpringBoot
 thumbnail: { thumbnailSrc }
-draft: false
+draft: true
 ---
 
 # Spring의 동작과정
 
-# 자바의 컴파일 과정
-
-# 오늘 사용한 모든 Annotation
-
-# PUT과 PATCH의 차이점
-
-# Builder Pattern
+# +/) Gradle 동작

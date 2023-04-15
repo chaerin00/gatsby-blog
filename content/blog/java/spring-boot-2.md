@@ -6,6 +6,8 @@ thumbnail: { thumbnailSrc }
 draft: false
 ---
 
+# Spring의 동작과정
+
 # 자바의 컴파일 과정
 
 # 오늘 사용한 모든 Annotation

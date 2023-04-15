@@ -1,18 +1,16 @@
 ---
-title: 'Spring boot 정리 #1'
+title: 'Spring boot 정리 #1 - Spring의 4가지 특징'
 date: 2023-04-14 16:04:89
 category: java
 thumbnail: { thumbnailSrc }
 draft: false
 ---
 
-# Spring의 4가지 특징
-
 ![](./images/spring.webp)
 
-## 1. POJO 프로그래밍 지향 (Plane Old Java Object)
+# 1. POJO 프로그래밍 지향 (Plane Old Java Object)
 
-### POJO의 의미
+## POJO의 의미
 
 > Plain Old Java Object, 간단히 POJO는 말 그대로 해석을 하면 오래된 방식의 간단한 자바 오브젝트라는 말로서 Java EE 등의 중량 프레임워크들을 사용하게 되면서 해당 프레임워크에 종속된 "무거운" 객체를 만들게 된 것에 반발해서 사용되게 된 용어이다.
 
@@ -43,9 +41,95 @@ public class EmployeePojo {
 
 위의 예시는 어떤 프레임워크에도 종속되지 않고 어떤 자바프로그램에서든 사용가능한 클래스이기 때문에 POJO이다.
 
-## 2. IoC / DI (Inversion of Control & Dependency Injection)
+# 2. IoC / DI (Inversion of Control & Dependency Injection)
 
-## 3. AOP (Aspect Oriented Programming)
+## DI(Dependency Injection)
+
+DI는 객체를 직접 생성하지 않고 외부에서 생성한 후 주입시켜주는 방식을 말한다.
+이를 이용하면 모듈 간의 결합도가 낮아지고 유연성을 높일 수 있다.
+
+![](./images/DI.jpeg)
+
+첫번째는 A객체에서 B, C 객체를 생성하는 반면, 두번째는 외부 컨테이너(IoC)에서 B, C 객체를 생성한 후 A에 주입시키는 것을 확인할 수 있다.
+
+첫번째 방법이 문제가 되는 이유는 무엇일까?
+
+```java
+public class A {
+    private B b;
+
+    public A () {
+        this.b = new B();
+    }
+}
+```
+
+다음과 같이 A 클래스에서 B 클래스를 생성한다고 하면 B클래스에서 수정이 생겼을 때 A 클래스까지 수정해야하는 상황이 발생한다.
+또한 error가 발생했을 때 A에서 발생한 에러인지 아니면 내부의 B에서 발생한 에러인지 파악하기 어려워 Unit test가 어려워지게 된다.
+
+```java
+public class A {
+    private B b;
+
+    public A(B b) {
+        this.b = b
+    }
+}
+```
+
+위의 예제는 직접 B 객체를 생성하지 않고 외부에서 생성자를 통해 전달 받아 의존성을 주입하는 예시이다.
+
+```java
+public class A {
+    private B b;
+
+    public setB(B b) {
+        this.b= b
+    }
+}
+```
+
+위의 예제는 생성자가 아닌 setter를 이용해 의존성을 주입하는 예시이다.
+
+이것이 어떻게 가능한지 알아보자.
+
+![](./images/ioc_container.jpeg)
+
+스프링 IoC 컨테이너가 관리하는 객체들을 Bean 이라고 부른다. 스프링은 이러한 Bean들의 의존성을 관리하고, 객체를 만들어 주며, Bean으로 등록을 해 주고, 이렇게 만들어진 것들을 관리한다.
+이러한 스프링에서의 의존성 주입은 반드시 Bean으로 등록된 객체들 끼리만 가능하다. 스프링 IoC 컨테이너는 Bean으로 등록되지 않은 객체에는 의존성 주입을 해 주지 않는다.
+
+그런데 여기서 의문이 생긴다. 그동안 생성자 주입이든 setter 주입이든 DI를 사용해왔는데 따로 객체를 Bean으로 등록시킨 적은 없다는 것이다.
+
+주로 의존성 주입은 Controller에 Repository를 연결할 때 사용했다.
+
+```java
+@RestController
+@RequestMapping(value = "/product")
+public class ProductController {
+    private ProductRepository productRep;
+
+    @Autowired
+    public ProductApi(ProductRepository productRep) {
+        this.productRep = productRep;
+    }
+}
+```
+
+어떻게 ProductController가 bean으로 등록되었는지는 RestController를 뜯어보니 알 수 있었다.
+![](./images/bean.png)
+
+@RestController안에는 @Controller가 @Controller안에는 @Component 어노테이션이 있다.
+스프링은 @Component가 있는 객체를 bean으로 등록시켜준다.
+
+이렇게 사용하고 있던 annotation을 이용해 DI를 사용하고 있었던 것이다.
+(찾아보니 IntelliJ Ultimate 버전을 활용하면 bean으로 등록된 객체는 옆에 아이콘으로 표시해준다고 한다.)
+
+## IoC(Inversion of Control)
+
+IoC는 제어권 역전을 의미하며 직접 의존성을 만들지 않고 외부에서 의존성을 가져오는 것을 의미한다.
+즉 DI는 IoC의 일종이라고 할 수 있다.
+
+# 3. AOP (Aspect Oriented Programming)
 
 AOP는 **Aspect Oriented Programming**의 약자로 관점 지향 프로그래밍이라고 불린다. 흩어진 Aspect들을 모아서 모듈화하여 코드의 중복을 줄이는 프로그래밍 기법이다.
 
@@ -138,7 +222,7 @@ public String initFindForm(Map<String, Object> model) {
 
 위의 코드에서 보면 다음 getAPI가 호출될 때 @LogGetDate 어노테이션이 붙어있으므로 LogAspect가 불리고 initFindForm이 실행되기 전 logGetDate 메소드가 실행되게 된다.
 
-## 4. PSA (Portable Service Abstraction)
+# 4. PSA (Portable Service Abstraction)
 
 PSA는 하나의 추상화로 여러 서비스들을 묶어둔 것이다.
 예를 들어 Spring에는 다양한 annotation들이 있고 이를 활용하면 클래스의 역할을 지정할 뿐 아니라 개발자가 직접 코드를 작성하지 않고도 특정 기능을 수행하게 할 수 있다.
@@ -161,5 +245,3 @@ public class PostController {
 이것이 가능한 이유는 Spring에서 제공해주는 여러 기능이 annotation 뒤에 숨겨져 있기 때문인데 이것이 바로 서비스 추상화 PSA이다.
 
 위의 예시 뿐만 아니라 `@Transactional`을 사용하면 모든 로직이 성공적으로 수행되었다면 DB에 커밋 만약 아니라면 rollback을 해주는 등 이 PSA 개념을 사용한 Spring의 기능들이 많이 있다.
-
-# Spring의 동작과정

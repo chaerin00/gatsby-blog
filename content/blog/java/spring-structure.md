@@ -106,9 +106,8 @@ public class A {
 @RestController
 @RequestMapping(value = "/product")
 public class ProductController {
-    private ProductRepository productRep;
+    private final ProductRepository productRep;
 
-    @Autowired
     public ProductApi(ProductRepository productRep) {
         this.productRep = productRep;
     }
@@ -121,7 +120,7 @@ public class ProductController {
 @RestController안에는 @Controller가 @Controller안에는 @Component 어노테이션이 있다.
 스프링은 @Component가 있는 객체를 bean으로 등록시켜준다.
 
-이렇게 사용하고 있던 annotation을 이용해 DI를 사용하고 있었던 것이다.
+이렇게 사용하고 있던 annotation을 이용해 객체를 bean으로 등록하고 있었던 것이다.
 (찾아보니 IntelliJ Ultimate 버전을 활용하면 bean으로 등록된 객체는 옆에 아이콘으로 표시해준다고 한다.)
 
 ## IoC(Inversion of Control)

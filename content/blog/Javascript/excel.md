@@ -61,12 +61,9 @@ a 태그의 [download](https://www.w3schools.com/tags/att_a_download.asp) 속성
 이후에는 [revokeObjectURL](https://developer.mozilla.org/ko/docs/Web/API/URL/revokeObjectURL)을 이용하여 객체 URL을 해제시켜준다.
 
 ```javascript
-const { data, headers } = await api.excelClient.get(
-  `/api/v1/external/b/portals/${portalId}/sales-order/other-channel-order/transactions/excel-download`,
-  {
-    responseType: 'blob',
-  }
-)
+const { data, headers } = await api.excelClient.get(`/api/excel-download`, {
+  responseType: 'blob',
+})
 const blob = new Blob([data], {
   type: headers['content-type'],
 })
@@ -87,12 +84,9 @@ URL.revokeObjectURL(blobUrl)
 ```
 
 ```javascript
-const { data, headers } = await api.excelClient.get(
-  `/api/v1/external/b/portals/${portalId}/sales-order/other-channel-order/transactions/excel-download`,
-  {
-    responseType: 'blob',
-  }
-)
+const { data, headers } = await api.excelClient.get(`/api/excel-download`, {
+  responseType: 'blob',
+})
 const blob = new Blob([data], {
   type: headers['content-type'],
 })

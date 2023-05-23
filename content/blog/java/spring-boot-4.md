@@ -1,5 +1,5 @@
 ---
-title: 'Spring boot 정리 #4 - Annotation 정리'
+title: 'Spring boot 정리 #4 - Annotation(1)'
 date: 2023-04-18 19:04:06
 category: SpringBoot
 thumbnail: { thumbnailSrc }

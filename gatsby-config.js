@@ -106,6 +106,47 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              /* contents go here */
+            },
+            query: `
+            {
+              allMarkdownRemark(
+                sort: { order: DESC, fields: [frontmatter___date] },
+              ) {
+                nodes {
+                  excerpt
+                  html
+                  fields {
+                    slug
+                  }
+                  frontmatter {
+                    title
+                    date
+                  }
+                }
+              }
+            }
+          `,
+            output: "/rss.xml",
+            title: "Your Site's RSS Feed",
+            // Optional configuration specific for plugin:
+            match: "^/blog/",
+            link: "https://feeds.feedburner.com/gatsby/blog",
+            // Optional configuration passed through to itemOptions
+            custom_namespaces: {
+              media: 'http://search.yahoo.com/mrss/',
+            },
+            language: `en-US`,
+          },
+        ],
+      },
+    },
     // {
     //   resolve: `gatsby-plugin-google-adsense`,
     //   options: {
@@ -114,7 +155,6 @@ module.exports = {
     // },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-feed`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,

@@ -18,7 +18,7 @@ import * as ScrollManager from '../utils/scroll'
 import '../styles/code.scss'
 import 'katex/dist/katex.min.css'
 
-export default ({ data, pageContext, location }) => {
+const BlogPost= ({ data, pageContext, location }) => {
   useEffect(() => {
     ScrollManager.init()
     return () => ScrollManager.destroy()
@@ -83,3 +83,6 @@ export const pageQuery = graphql`
     }
   }
 `
+
+
+export default BlogPost

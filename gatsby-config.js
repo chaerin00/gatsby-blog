@@ -112,7 +112,15 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
-              /* contents go here */
+              return allMarkdownRemark.nodes.map((node) => {
+                return Object.assign({}, node.frontmatter, {
+                  description: node.excerpt,
+                  date: node.frontmatter.date,
+                  url: encodeURI(site.siteMetadata.siteUrl + node.fields.slug),
+                  guid: site.siteMetadata.siteUrl + node.fields.slug,
+                  custom_elements: [{ 'content:encoded': node.html }],
+                });
+              });
             },
             query: `
             {
@@ -135,13 +143,8 @@ module.exports = {
           `,
             output: "/rss.xml",
             title: "Your Site's RSS Feed",
-            // Optional configuration specific for plugin:
             match: "^/blog/",
             link: "https://feeds.feedburner.com/gatsby/blog",
-            // Optional configuration passed through to itemOptions
-            custom_namespaces: {
-              media: 'http://search.yahoo.com/mrss/',
-            },
             language: `en-US`,
           },
         ],

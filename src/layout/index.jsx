@@ -7,6 +7,7 @@ import { Footer } from '../components/footer'
 import { rhythm } from '../utils/typography'
 
 import './index.scss'
+import LanguageSelector from '../components/language-selector'
 
 export const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
@@ -22,7 +23,17 @@ export const Layout = ({ location, title, children }) => {
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
-        <ThemeSwitch />
+        <div
+          style={{
+            display: 'flex',
+            alignContent: 'center',
+            justifyContent: 'flex-end',
+            gap: '8px',
+          }}
+        >
+          <ThemeSwitch />
+          <LanguageSelector />
+        </div>
         <Header title={title} location={location} rootPath={rootPath} />
         {children}
         <Footer />

@@ -23,9 +23,7 @@ function getDistance(currentPos) {
 const Index = ({ data, location }) => {
   const { siteMetadata } = data.site
   const { countOfInitialPost } = siteMetadata.configs
-  const posts = data.allMarkdownRemark.edges.filter(
-    ({ node: { fields: slug } }) => slug.slug.includes('KR')
-  )
+  const posts = data.allMarkdownRemark.edges
   const categories = useMemo(
     () => _.uniq(posts.map(({ node }) => node.frontmatter.category)),
     []

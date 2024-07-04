@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
 import KRIcon from '../../../content/assets/south-korea.png'
 import USIcon from '../../../content/assets/united-states.png'
-import * as Storage from '../../utils/storage'
+import { LanguageContext } from '../../hooks/context/languageContext'
 
 const slideDown = keyframes`
   from {
@@ -62,24 +62,18 @@ const LANG_ICON_MAP = {
 }
 
 const LanguageSelector = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState(
-    Storage.getLanguage('EN')
-  )
+  const { language, setLanguage } = useContext(LanguageContext)
   const [isListOpen, setIsListOpen] = useState(false)
 
-  useEffect(() => {
-    Storage.setLanguage(selectedLanguage)
-  }, [selectedLanguage])
-
   const handleLanguageChange = (lang) => {
-    setSelectedLanguage(lang)
+    setLanguage(lang)
     setIsListOpen(false)
   }
 
   return (
     <Wrapper>
       <FlagButton onClick={() => setIsListOpen(!isListOpen)}>
-        <FlagIcon src={LANG_ICON_MAP[selectedLanguage]} alt="flag-icon" />
+        <FlagIcon src={LANG_ICON_MAP[language]} alt="flag-icon" />
       </FlagButton>
       {isListOpen && (
         <DropDown>

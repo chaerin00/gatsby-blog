@@ -90,4 +90,24 @@ body.dark {
   td {
     border-bottom: 1px solid #eee;
   }
+
+  .sidebar {
+    color: $dark-light-font-color;
+    background-color: $dark-background-color;
+    .sidebar-header {
+      border-color: $dark-light-font-color;
+    }
+    .sidebar-link__container {
+      border-color: $dark-light-font-color;
+    }
+    .sidebar-link {
+      box-shadow: none;
+      text-decoration: none;
+      color: $dark-light-font-color;
+    }
+    .download-cv {
+      background-color: #eee;
+      color: $dark-gray;
+    }
+  }
 }

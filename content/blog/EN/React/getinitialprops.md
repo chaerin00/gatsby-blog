@@ -1,17 +1,16 @@
 ---
-title: Next.js _app.tsx에서 getInitialProps 커스텀하기
+title: Customizing getInitialProps in Next.js _app.tsx
 date: 2022-04-18 17:05:62
 category: React
 thumbnail: { thumbnailSrc }
 draft: false
 ---
 
-## Authomatic Static Optimization
+## Automatic Static Optimization
 
-Next.js v9.3 이후로는 data fetching을 위해 사용하던 getInitialProps가 getStaticProps, getServerSideProps로 분리되었습니다.
-Next 공식 문서의 custom App에 대한 내용을 살펴보면 \_app.tsx에서 getInitialProps를 사용할 시 Automatic Static Optimization의 기능이 사용불가능해지기 때문에 사용하지 말 것을 권장하고 있습니다.
+Since Next.js v9.3, `getInitialProps` used for data fetching has been divided into `getStaticProps` and `getServerSideProps`. According to the Next.js official documentation regarding custom App, using `getInitialProps` in `_app.tsx` disables the feature of Automatic Static Optimization and is discouraged.
 
-```js
+```javascript
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
@@ -31,42 +30,39 @@ function MyApp({ Component, pageProps }) {
 export default MyApp
 ```
 
-Automatic Static Optimization란 무엇인지 살펴보겠습니다.
+Automatic Static Optimization refers to Next.js recognizing pages without `getInitialProps` or `getServerSideProps` as static pages during build time, rendering them as HTML files. This pre-rendering process enables users to quickly view the pages without requiring server-side rendering upon each request.
 
-Next에서는 페이지에 getInitialProps 또는 getServerSideProps가 없을 때 해당 페이지를 static 페이지라고 인식하여 build시에 html 파일로 만들어버립니다. 이것을 build시에 pre-render한다고 하는 것입니다.
-이렇게 html 파일을 만들면 유저의 요청이 들어왔을 때 서버에서 html을 만들지 않아도 되기 때문에 유저가 빠르게 페이지를 볼 수 있도록 해줍니다.
-
-> next build 결과
+> Example of Next.js build output
 
 ```
 .next/server/static/about.html
 ```
 
-반대로 getInitailProps나 getServerSideProps가 있으면 build시에 html파일을 만드는 것이 아닌 js파일을 만들고, 유저의 요청이 들어오면 next 서버는 필요한 데이터를 서버사이드렌더링으로 가져온 후 완성된 html을 반환합니다.
+Conversely, if `getInitialProps` or `getServerSideProps` exists, Next.js generates `.js` files instead of `.html` during build. When a user makes a request, Next.js then performs server-side rendering to fetch necessary data before returning the completed HTML.
 
-> next build 결과
+> Example of Next.js build output
 
 ```
 .next/server/static/about.js
 ```
 
-그렇기때문에 \_app.tsx에 getInitialProps를 넣으면 build시에 어떠한 페이지도 static page로 인식되지 않기 때문에 Automatic Static Optimization이 불가능해지는 것입니다.
+Thus, including `getInitialProps` in `_app.tsx` prevents any page from being recognized as a static page during build, thereby disabling Automatic Static Optimization.
 
-## \_app.tsx에서 getInitialProps 사용하기
+## Using getInitialProps in \_app.tsx
 
-저의 경우에는 동적 웹을 구현하기 위해 모든 페이지에서 동일한 getServerSideProps를 불러오고 있었습니다. static 페이지가 하나도 만들어지지 않기 때문에 Automatic Static Optimization이 불가능한 구조였습니다. 그래서 코드가 모든 페이지에서 반복되고 로직이 복잡해지는 것을 막기 위해 \_app.tsx에서 getInitialProps를 사용하기로 했습니다.
+In my case, to implement a dynamic web application, I was invoking `getServerSideProps` across all pages. This setup prevented any static pages from being created, disabling Automatic Static Optimization and resulting in repetitive code and complex logic. To address this, I decided to use `getInitialProps` in `_app.tsx`.
 
-페이지를 불러오는 과정(Server Side Cycle)은 다음과 같습니다.
+Here's the Server-Side Cycle for loading pages:
 
-1. Next Server가 GET 요청을 받는다.
-2. 요청에 맞는 Page를 찾는다.
-3. \_app.tsx의 getInitialProps가 있다면 실행한다.
-4. Page Component의 getInitialProps가 있다면 실행한다. pageProps들을 받아온다.
-5. \_document.js의 getInitialProps가 있다면 실행한다. pageProps들을 받아온다.
-6. 모든 props들을 구성하고, \_app.js > page Component 순서로 rendering.
-7. 모든 Content를 구성하고 \_document.js를 실행하여 html 형태로 출력한다.
+1. Next.js server receives a GET request.
+2. It identifies the matching page.
+3. Executes `getInitialProps` in `_app.tsx` if defined.
+4. Executes `getInitialProps` in the Page Component if defined, fetching `pageProps`.
+5. Executes `getInitialProps` in `_document.js` if defined, fetching `pageProps`.
+6. Renders in the order: `_app.js` > Page Component.
+7. Constructs all content and runs `_document.js`, outputting the HTML format.
 
-이 과정에서 \_app.tsx와 page.tsx에 모두 getInitialProps와 getServerSideProps가 정의 되어있다면 page.tsx에서 불러온 pageProps가 덮어씌워지게 됩니다. 그렇기 때문에 \_app.tsx의 getInitialProps를 커스텀해주어야 합니다.
+In this process, if both `_app.tsx` and `page.tsx` define `getInitialProps` or `getServerSideProps`, the `pageProps` fetched from `page.tsx` will overwrite those from `_app.tsx`. Therefore, `_app.tsx`'s `getInitialProps` needs to be customized accordingly.
 
 ```typescript
 import type { AppContext } from 'next/app'
@@ -97,11 +93,11 @@ export default MyApp
 
 ```
 
-위와 같이 `{...pageProps, data}` 받아오는 pageProps들을 합쳐주어야 app에서 불러온 theme 데이터와 이후 page.tsx에서 불러온 props가 합쳐져서 전달되게 됩니다.
+As shown above, `{...pageProps, data}` combines the `pageProps` received from fetching `page.tsx` with the theme data fetched from `_app.tsx`, ensuring they are passed together.
 
-<hr>
+---
 
-### 참고자료 📕
+### References 📕
 
 https://velog.io/@cyranocoding/Next-js-%EA%B5%AC%EB%8F%99%EB%B0%A9%EC%8B%9D-%EA%B3%BC-getInitialProps
 https://nextjs.org/docs/advanced-features/custom-app

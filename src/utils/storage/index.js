@@ -35,3 +35,13 @@ export function getTheme(defaultValue) {
 export function setTheme(val) {
   return setValueToLocalStorage(`${LOCAL_STORAGE_KEY}/theme`, val)
 }
+
+export function getLanguage(defaultValue) {
+  return (
+    getValueFromLocalStorage(`${LOCAL_STORAGE_KEY}/language`) || defaultValue
+  )
+}
+
+export function setLanguage(val) {
+  return setValueToLocalStorage(`${LOCAL_STORAGE_KEY}/language`, val)
+}

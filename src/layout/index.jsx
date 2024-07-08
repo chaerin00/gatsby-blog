@@ -12,6 +12,7 @@ import { LanguageProvider } from '../hooks/context/languageContext'
 
 export const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
+  const isRoot = location.pathname === rootPath
 
   return (
     <React.Fragment>
@@ -34,7 +35,7 @@ export const Layout = ({ location, title, children }) => {
             }}
           >
             <ThemeSwitch />
-            <LanguageSelector />
+            {isRoot && <LanguageSelector />}
           </div>
           <Header title={title} location={location} rootPath={rootPath} />
           {children}

@@ -1,8 +1,8 @@
 module.exports = {
   title: `Chaerin.dev`,
-  description: `배운 것들 안 까먹으려고 쓰는 블로그 📕`,
+  description: `Tech Blog📕`,
   author: `Chaerin`,
-  introduction: `배운 것들 안 까먹으려고 쓰는 블로그 📕`,
+  introduction: `Tech Blog📕`,
   siteUrl: `https://gatsby-starter-bee.netlify.com`, // Your blog site url
   social: {
     twitter: ``, // Your Twitter account

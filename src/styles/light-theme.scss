@@ -77,4 +77,24 @@ body.light {
       color: $navigator-text-color;
     }
   }
+
+  .sidebar {
+    color: $light-category-text-color;
+    background-color: $light-background-color;
+    .sidebar-header {
+      border-color: $light-gray;
+    }
+    .sidebar-link__container {
+      border-color: $light-gray;
+    }
+    .sidebar-link {
+      box-shadow: none;
+      text-decoration: none;
+      color: $light-category-text-color;
+    }
+    .download-cv {
+      background-color: $dark-gray;
+      color: white;
+    }
+  }
 }

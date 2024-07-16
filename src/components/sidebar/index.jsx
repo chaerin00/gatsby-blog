@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import MenuIcon from '../../../content/assets/menu-icon.svg'
-import CloseIcon from '../../../content/assets/close.svg'
+import MenuIcon from '../../../assets/menu-icon.svg'
+import CloseIcon from '../../../assets/close.svg'
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 

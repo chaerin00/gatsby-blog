@@ -119,8 +119,8 @@ module.exports = {
                   url: encodeURI(site.siteMetadata.siteUrl + node.fields.slug),
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
                   custom_elements: [{ 'content:encoded': node.html }],
-                });
-              });
+                })
+              })
             },
             query: `
             {
@@ -141,10 +141,10 @@ module.exports = {
               }
             }
           `,
-            output: "/rss.xml",
+            output: '/rss.xml',
             title: "Your Site's RSS Feed",
-            match: "^/blog/",
-            link: "https://feeds.feedburner.com/gatsby/blog",
+            match: '^/blog/',
+            link: 'https://feeds.feedburner.com/gatsby/blog',
             language: `en-US`,
           },
         ],
@@ -156,6 +156,7 @@ module.exports = {
     //     publisherId: metaConfig.ad,
     //   },
     // },
+    `gatsby-plugin-svgr`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-offline`,

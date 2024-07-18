@@ -97,4 +97,21 @@ body.light {
       color: white;
     }
   }
+
+  .about {
+    .experience {
+      .badge {
+        background-color: #e5e7eb;
+        color: #4b5563;
+      }
+      .card {
+        .period {
+          color: $middle-gray;
+        }
+        .position {
+          color: $middle-gray;
+        }
+      }
+    }
+  }
 }

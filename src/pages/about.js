@@ -5,6 +5,7 @@ import { Layout } from '../layout'
 import { rhythm } from '../utils/typography'
 import * as Lang from '../constants'
 import Greeting from '../components/about/greeting'
+import Experience from '../components/about/experience'
 
 const About = ({ data, location }) => {
   const resumes = data.allMarkdownRemark.edges
@@ -27,7 +28,10 @@ const About = ({ data, location }) => {
       >
         <div dangerouslySetInnerHTML={{ __html: resume.html }} />
       </div> */}
-      <Greeting />
+      <div className="about">
+        <Greeting />
+        <Experience>experiences...</Experience>
+      </div>
       {/* <Education></Education>
       <Skills></Skills>
       <Experience>experiences...</Experience>

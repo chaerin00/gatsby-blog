@@ -110,4 +110,22 @@ body.dark {
       color: $dark-gray;
     }
   }
+
+  .about {
+    .experience {
+      .badge {
+        background-color: #e5e7eb;
+        color: #4b5563;
+      }
+      .card {
+        border: 1px solid #4b5563;
+        .period {
+          color: $middle-gray;
+        }
+        .position {
+          color: $middle-gray;
+        }
+      }
+    }
+  }
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
-import { ReactComponent as LocationIcon } from '../../../../assets/location.svg'
-import { ReactComponent as LinkedInIcon } from '../../../../assets/linkedin.svg'
-import { ReactComponent as GitHubIcon } from '../../../../assets/github.svg'
+import { ReactComponent as LocationIcon } from '../../../assets/location.svg'
+import { ReactComponent as LinkedInIcon } from '../../../assets/linkedin.svg'
+import { ReactComponent as GitHubIcon } from '../../../assets/github.svg'
 
 const ExternalLink = styled.a`
   text-decoration: none;
@@ -20,7 +20,7 @@ const Greeting = () => {
         and I am pursuing a Master's degree in Computer Engineering at UC
         Irvine. I am passionate about efficient collaboration by writing
         maintainable, readable, and scalable code.
-        <br /> I am also dedicated to documenting everything I learn on{' '}
+        <br /> I also enjoy documenting everything I learn on{' '}
         <Link to="/">my tech blog</Link> to share knowledge and deepen my
         understanding.
       </p>

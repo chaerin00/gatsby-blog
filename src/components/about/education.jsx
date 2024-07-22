@@ -19,11 +19,9 @@ const Item = styled.div`
   .degree {
     all: unset;
     font-weight: 600;
-    white-space: nowrap;
   }
   .period {
     text-align: right;
-    white-space: nowrap;
   }
   ul {
     width: 100%;
@@ -33,7 +31,7 @@ const Item = styled.div`
 const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 `
 
 const Education = () => {

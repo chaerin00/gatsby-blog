@@ -7,6 +7,7 @@ import * as Lang from '../constants'
 import Greeting from '../components/about/greeting'
 import Experience from '../components/about/experience'
 import Education from '../components/about/education'
+import Skills from '../components/about/skills'
 
 const About = ({ data, location }) => {
   const resumes = data.allMarkdownRemark.edges
@@ -33,6 +34,7 @@ const About = ({ data, location }) => {
         <Greeting />
         <Experience />
         <Education />
+        <Skills />
       </div>
       {/* <Education></Education>
       <Skills></Skills>

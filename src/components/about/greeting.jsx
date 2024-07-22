@@ -21,8 +21,7 @@ const Greeting = () => {
         Irvine. I am passionate about efficient collaboration by writing
         maintainable, readable, and scalable code.
         <br /> I also enjoy documenting everything I learn on{' '}
-        <Link to="/">my tech blog</Link> to share knowledge and deepen my
-        understanding.
+        <Link to="/">my tech blog</Link> to share knowledge.
       </p>
       <p style={{ display: 'flex', gap: '4px' }}>
         <span>

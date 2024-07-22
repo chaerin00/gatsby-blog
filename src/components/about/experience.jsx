@@ -1,23 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
-
-const Wrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 96px 0;
-`
-
-const Badge = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 115px;
-  border-radius: 12px;
-  font-size: 14px;
-  line-height: 28px;
-`
+import Panel from './panel'
+import Stack from './stack'
 
 const CardContainer = styled.div`
   width: 100%;
@@ -56,33 +40,21 @@ const Card = styled.div`
 
 const Experience = () => {
   return (
-    <Wrapper className="experience">
-      <Badge className="badge">Experience</Badge>
-      <p style={{ fontWeight: 300, marginTop: '16px' }}>
-        Here is a quick summary of my most recent experiences:
-      </p>
+    <Panel
+      className="experience"
+      title="experience"
+      description="Here is a quick summary of my most recent experiences:"
+    >
       <CardContainer>
         <Card className="card">
-          <div
-            style={{
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'space-between',
-            }}
-          >
+          <Stack>
             <p className="company">Bear Robotics</p>
             <span className="location">Redwood City, California, USA</span>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'space-between',
-            }}
-          >
+          </Stack>
+          <Stack>
             <p className="position">Software Engineer Intern</p>
             <span className="period">July 2023 - Jun 2024</span>
-          </div>
+          </Stack>
           <ul className="summary">
             <li>
               Developed new features for hospitality robots in restaurant
@@ -98,42 +70,24 @@ const Experience = () => {
           </ul>
         </Card>
         <Card className="card">
-          <div
-            style={{
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'space-between',
-            }}
-          >
+          <Stack>
             <p className="company">FreeD Group</p>
             <span className="location">Seoul, Korea</span>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'space-between',
-            }}
-          >
+          </Stack>
+          <Stack>
             <p className="position">
               Frontend Developer
               <span className="position-detail">(part-time)</span>
             </p>
             <span className="period">June 2022 - February 2023</span>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'space-between',
-            }}
-          >
+          </Stack>
+          <Stack>
             <p className="position">
               Frontend Developer Intern
               <span className="position-detail"></span>
             </p>
             <span className="period">September 2021 - May 2022</span>
-          </div>
+          </Stack>
           <ul className="summary">
             <li>
               Developed a user interface for an e-commerce platform serving
@@ -151,7 +105,7 @@ const Experience = () => {
           </ul>
         </Card>
       </CardContainer>
-    </Wrapper>
+    </Panel>
   )
 }
 

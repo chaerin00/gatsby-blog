@@ -99,11 +99,11 @@ body.light {
   }
 
   .about {
+    .badge {
+      background-color: #e5e7eb;
+      color: #4b5563;
+    }
     .experience {
-      .badge {
-        background-color: #e5e7eb;
-        color: #4b5563;
-      }
       .card {
         .period {
           color: $middle-gray;

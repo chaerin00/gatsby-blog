@@ -6,6 +6,7 @@ import { rhythm } from '../utils/typography'
 import * as Lang from '../constants'
 import Greeting from '../components/about/greeting'
 import Experience from '../components/about/experience'
+import Education from '../components/about/education'
 
 const About = ({ data, location }) => {
   const resumes = data.allMarkdownRemark.edges
@@ -30,7 +31,8 @@ const About = ({ data, location }) => {
       </div> */}
       <div className="about">
         <Greeting />
-        <Experience>experiences...</Experience>
+        <Experience />
+        <Education />
       </div>
       {/* <Education></Education>
       <Skills></Skills>

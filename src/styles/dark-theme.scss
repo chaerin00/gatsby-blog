@@ -112,11 +112,11 @@ body.dark {
   }
 
   .about {
+    .badge {
+      background-color: #e5e7eb;
+      color: #4b5563;
+    }
     .experience {
-      .badge {
-        background-color: #e5e7eb;
-        color: #4b5563;
-      }
       .card {
         border: 1px solid #4b5563;
         .period {

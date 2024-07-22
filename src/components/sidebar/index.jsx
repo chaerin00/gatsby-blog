@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import MenuIcon from '../../../assets/menu-icon.svg'
-import CloseIcon from '../../../assets/close.svg'
+import { ReactComponent as MenuIcon } from '../../../assets/menu-icon.svg'
+import { ReactComponent as CloseIcon } from '../../../assets/close.svg'
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 
-const IconButton = styled.img`
+const IconButton = styled.button`
+  all: unset;
   float: right;
   padding: 14px;
-  opacity: 0.6;
   margin: 0;
   cursor: pointer;
 `
@@ -65,14 +65,17 @@ const Sidebar = ({ title }) => {
     <div>
       <IconButton
         className="menu-icon-button"
-        src={MenuIcon}
         onClick={() => setIsOpen(!isOpen)}
-      />
+      >
+        <MenuIcon />
+      </IconButton>
       {isOpen && (
         <SidePanel onClick={() => setIsOpen(false)}>
           <SideMenu className="sidebar" onClick={(e) => e.stopPropagation()}>
             <Header className="sidebar-header">
-              <IconButton src={CloseIcon} onClick={() => setIsOpen(false)} />
+              <IconButton onClick={() => setIsOpen(false)}>
+                <CloseIcon />
+              </IconButton>
             </Header>
             <LinkContainer className="sidebar-link__container">
               <Link to="/about" className="sidebar-link">
@@ -81,7 +84,11 @@ const Sidebar = ({ title }) => {
               <Link to="/" className="sidebar-link">
                 Blog
               </Link>
-              <Link to="/about#contact" className="sidebar-link">
+              <Link
+                to="/about#contact"
+                onClick={() => setIsOpen(false)}
+                className="sidebar-link"
+              >
                 Contact
               </Link>
             </LinkContainer>

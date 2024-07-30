@@ -113,5 +113,17 @@ body.light {
         }
       }
     }
+
+    .education {
+      .time-line {
+        border-left: 2px solid $light-gray;
+        .time {
+          &::before {
+            border-color: $light-gray;
+            background: $light-background-color;
+          }
+        }
+      }
+    }
   }
 }

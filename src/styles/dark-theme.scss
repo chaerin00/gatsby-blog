@@ -110,4 +110,37 @@ body.dark {
       color: $dark-gray;
     }
   }
+
+  .about {
+    .badge {
+      background-color: #e5e7eb;
+      color: #4b5563;
+    }
+    .experience {
+      .card {
+        border: 1px solid #4b5563;
+        .period {
+          color: $middle-gray;
+        }
+        .position {
+          color: $middle-gray;
+        }
+      }
+    }
+    .projects {
+      .card {
+        border: 1px solid #4b5563;
+      }
+    }
+
+    .education {
+      .time-line {
+        border-left: 2px solid #e5e7eb;
+        .time::before {
+          border-color: #e5e7eb;
+          background: $dark-background-color;
+        }
+      }
+    }
+  }
 }

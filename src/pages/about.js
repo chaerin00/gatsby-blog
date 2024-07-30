@@ -4,6 +4,12 @@ import { Layout } from '../layout'
 
 import { rhythm } from '../utils/typography'
 import * as Lang from '../constants'
+import Greeting from '../components/about/greeting'
+import Experience from '../components/about/experience'
+import Education from '../components/about/education'
+import Skills from '../components/about/skills'
+import Contact from '../components/about/contact'
+import Projects from '../components/about/projects'
 
 const About = ({ data, location }) => {
   const resumes = data.allMarkdownRemark.edges
@@ -14,7 +20,7 @@ const About = ({ data, location }) => {
 
   return (
     <Layout location={location}>
-      <div
+      {/* <div
         style={{
           marginLeft: `auto`,
           marginRight: `auto`,
@@ -25,8 +31,17 @@ const About = ({ data, location }) => {
         }}
       >
         <div dangerouslySetInnerHTML={{ __html: resume.html }} />
+      </div> */}
+      <div className="about">
+        <Greeting />
+        <Experience />
+        <Projects />
+        <Education />
+        <Skills />
+        <Contact />
       </div>
-      {/* <Bio>Hi there</Bio>
+      {/* <Education></Education>
+      <Skills></Skills>
       <Experience>experiences...</Experience>
       <Work>Some of the noteworthy projects I have built:</Work>
       <Contact id="contact">Get in Touch</Contact> */}

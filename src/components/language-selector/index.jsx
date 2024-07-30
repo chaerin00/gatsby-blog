@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
-import KRIcon from '../../../content/assets/south-korea.png'
-import USIcon from '../../../content/assets/united-states.png'
+import KRIcon from '../../../assets/south-korea.png'
+import USIcon from '../../../assets/united-states.png'
 import { LanguageContext } from '../../hooks/context/languageContext'
 
 const slideDown = keyframes`

@@ -13,7 +13,7 @@ const IconButton = styled.button`
 `
 
 const SidePanel = styled.div`
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: flex-end;
   z-index: 100;

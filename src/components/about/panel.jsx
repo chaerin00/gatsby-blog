@@ -1,15 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import Badge from './Badge'
 
-const Badge = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 115px;
-  border-radius: 12px;
-  font-size: 14px;
-  line-height: 28px;
-`
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;

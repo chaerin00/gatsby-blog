@@ -36,7 +36,7 @@ const ItemContainer = styled.div`
 
 const Education = () => {
   return (
-    <Panel className="education" title="education">
+    <Panel className="education" title="Education">
       <ItemContainer>
         <Item>
           <Stack>

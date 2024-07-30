@@ -9,6 +9,7 @@ import Experience from '../components/about/experience'
 import Education from '../components/about/education'
 import Skills from '../components/about/skills'
 import Contact from '../components/about/contact'
+import Projects from '../components/about/projects'
 
 const About = ({ data, location }) => {
   const resumes = data.allMarkdownRemark.edges
@@ -34,6 +35,7 @@ const About = ({ data, location }) => {
       <div className="about">
         <Greeting />
         <Experience />
+        <Projects />
         <Education />
         <Skills />
         <Contact />

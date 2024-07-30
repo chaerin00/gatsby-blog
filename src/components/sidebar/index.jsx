@@ -92,11 +92,11 @@ const Sidebar = ({ title }) => {
                 Contact
               </Link>
             </LinkContainer>
-            <Footer>
+            {/* <Footer>
               <DownloadCvButton className="download-cv">
                 Download CV
               </DownloadCvButton>
-            </Footer>
+            </Footer> */}
           </SideMenu>
         </SidePanel>
       )}

@@ -54,11 +54,19 @@ const Skills = () => {
             style={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'space-between',
               flexDirection: 'column',
             }}
           >
-            <img src={image} alt={name} width="64px" />
+            <div
+              style={{
+                flex: '1',
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <img src={image} alt={name} width="64px" />
+            </div>
             <span className="skill">{name}</span>
           </div>
         ))}

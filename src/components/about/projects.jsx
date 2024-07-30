@@ -39,6 +39,15 @@ const Skill = styled.section`
   gap: 8px;
 `
 
+const CardContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+`
+
 const PROJECTS = [
   {
     title: 'Cookie Parking',
@@ -79,29 +88,27 @@ const PROJECTS = [
 
 const Projects = () => {
   return (
-    <Panel
-      className="projects"
-      title={'Projects'}
-      description={'Some of the noteworthy projects I have built:'}
-    >
-      {PROJECTS.map(({ image, title, descriptions, skills, link }) => (
-        <Card className="card">
-          <CardContent>
-            <h3 className="title">{title}</h3>
-            {descriptions.map((description) => (
-              <p className="description">{description}</p>
-            ))}
-            <Skill>
-              {skills.map((skill) => (
-                <Badge>{skill}</Badge>
+    <Panel className="projects" title={'Personal Projects'}>
+      <CardContainer>
+        {PROJECTS.map(({ title, descriptions, skills, link }) => (
+          <Card className="card">
+            <CardContent>
+              <h3 className="title">{title}</h3>
+              {descriptions.map((description) => (
+                <p className="description">{description}</p>
               ))}
-            </Skill>
-            <a style={{ all: 'unset' }} target="_blank" href={link}>
-              <LinkIcon />
-            </a>
-          </CardContent>
-        </Card>
-      ))}
+              <Skill>
+                {skills.map((skill) => (
+                  <Badge>{skill}</Badge>
+                ))}
+              </Skill>
+              <a style={{ all: 'unset' }} target="_blank" href={link}>
+                <LinkIcon />
+              </a>
+            </CardContent>
+          </Card>
+        ))}
+      </CardContainer>
     </Panel>
   )
 }

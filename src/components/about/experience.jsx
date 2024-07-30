@@ -91,9 +91,9 @@ const EXPERIENCES = [
       },
     ],
     descriptions: [
-      `Developed a user interface for an e-commerce platform serving 3,000+ suppliers and 10 marketplaces, including Hyundai Card and BMW.`,
-      `Integrated message templates, previews, and data visualization into a food-delivery chat-bot using RCS technology.`,
-      `Created an in-house design system with reusable React components, improving developer productivity and reducing bug rates.`,
+      `Developed a user interface for an e-commerce platform serving 3,000+ suppliers and 10 marketplaces, including Hyundai Card and BMW`,
+      `Integrated message templates, previews, and data visualization into a food-delivery chat-bot using RCS technology`,
+      `Created an in-house design system with reusable React components, improving developer productivity and reducing bug rates`,
     ],
     skills: [
       'Typescript',
@@ -111,15 +111,16 @@ const EXPERIENCES = [
 
 const Experience = () => {
   return (
-    <Panel
-      className="experience"
-      title="Experience"
-      description="Here is a quick summary of my most recent experiences:"
-    >
+    <Panel className="experience" title="Experience">
       <CardContainer>
         {EXPERIENCES.map(
           ({ company, location, positions, descriptions, skills }) => (
-            <Card className="card">
+            <Card
+              className="card"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
               <Stack>
                 <p className="company">{company}</p>
                 <span className="location">{location}</span>

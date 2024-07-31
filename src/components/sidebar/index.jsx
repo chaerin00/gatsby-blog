@@ -49,7 +49,7 @@ const Footer = styled.section`
   padding-bottom: 25px;
 `
 
-const DownloadCvButton = styled(Link)`
+const DownloadCvButton = styled.a`
   padding: 10px 4px;
   display: flex;
   align-items: center;
@@ -92,11 +92,15 @@ const Sidebar = ({ title }) => {
                 Contact
               </Link>
             </LinkContainer>
-            {/* <Footer>
-              <DownloadCvButton className="download-cv">
+            <Footer>
+              <DownloadCvButton
+                className="download-cv"
+                href="https://drive.google.com/file/d/1pvcQ3fkdYGfs6HWw8HHBzBW7L6KocMnt/view?usp=sharing"
+                target="_blank"
+              >
                 Download CV
               </DownloadCvButton>
-            </Footer> */}
+            </Footer>
           </SideMenu>
         </SidePanel>
       )}

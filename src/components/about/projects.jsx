@@ -3,21 +3,7 @@ import Panel from './panel'
 import styled from '@emotion/styled'
 import { ReactComponent as LinkIcon } from '../../../assets/external-link.svg'
 import Badge from './Badge'
-
-const Card = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 16px;
-  box-shadow:
-    0px 4px 3px rgba(0, 0, 0, 0.07),
-    0px 2px 2px rgba(0, 0, 0, 0.06);
-  border-radius: 12px;
-  @media screen and (max-width: 600px) {
-    flex-direction: column;
-  }
-`
+import Card from './card'
 
 const CardContent = styled.div`
   display: flex;

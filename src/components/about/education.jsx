@@ -70,7 +70,7 @@ const TimeLine = styled.div`
 
 const Education = () => {
   return (
-    <Panel className="education" title="Education">
+    <Panel className="education" title="Education" useAnimation>
       <TimeLine className="time-line">
         <Item>
           <Time className="time">September 2024 - </Time>

@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import Panel from './panel'
 import Stack from './stack'
 import Badge from './Badge'
+import Card from './card'
 
 const CardContainer = styled.div`
   width: 100%;
@@ -13,38 +14,29 @@ const CardContainer = styled.div`
   gap: 48px;
 `
 
-const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 32px;
-  width: 100%;
-  box-shadow:
-    0px 4px 3px rgba(0, 0, 0, 0.07),
-    0px 2px 2px rgba(0, 0, 0, 0.06);
-  border-radius: 12px;
-  .company {
-    font-weight: 600;
-    font-size: 20px;
-  }
-  .position {
-    margin: 4px;
-    font-weight: 600;
-    .position-detail {
-      font-weight: 400;
-    }
-  }
-  .summary {
-    margin-top: 8px;
-  }
+const Company = styled.p`
+  font-weight: 600;
+  font-size: 20px;
+`
 
-  .skills {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 16px 0;
-    flex: 1;
-    gap: 8px;
+const Position = styled.p`
+  margin: 4px;
+  font-weight: 600;
+  .position-detail {
+    font-weight: 400;
   }
+`
+
+const Summary = styled.ul`
+  margin-top: 8px;
+`
+
+const Skills = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 16px 0;
+  flex: 1;
+  gap: 8px;
 `
 
 const EXPERIENCES = [
@@ -115,37 +107,32 @@ const Experience = () => {
       <CardContainer>
         {EXPERIENCES.map(
           ({ company, location, positions, descriptions, skills }) => (
-            <Card
-              className="card"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
+            <Card className="card">
               <Stack>
-                <p className="company">{company}</p>
-                <span className="location">{location}</span>
+                <Company>{company}</Company>
+                <span>{location}</span>
               </Stack>
               {positions.map(({ title, period, detail }) => (
                 <Stack>
-                  <p className="position">
+                  <Position>
                     {title}
                     {detail && (
                       <span className="position-detail">{detail}</span>
                     )}
-                  </p>
+                  </Position>
                   <span className="period">{period}</span>
                 </Stack>
               ))}
-              <ul className="summary">
+              <Summary>
                 {descriptions.map((description) => (
                   <li>{description}</li>
                 ))}
-              </ul>
-              <section className="skills">
+              </Summary>
+              <Skills>
                 {skills.map((skill) => (
                   <Badge>{skill}</Badge>
                 ))}
-              </section>
+              </Skills>
             </Card>
           )
         )}

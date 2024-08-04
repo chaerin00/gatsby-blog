@@ -47,6 +47,7 @@ const Skills = () => {
       className="skills"
       title="skills"
       description="The skills, tools and technologies I am good at:"
+      useAnimation
     >
       <Grid>
         {SKILLS.map(({ name, image }) => (

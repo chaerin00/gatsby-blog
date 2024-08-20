@@ -47,14 +47,16 @@ const EXPERIENCES = [
       { title: 'Software Engineer Intern', period: 'July 2023 - Jun 2024' },
     ],
     descriptions: [
-      `Developed new features for hospitality robots in restaurant
-              environments using various technology stacks: React for user
-              interfaces, ROS for robot control, and Flask for backend services
-            `,
-      `Designed, developed, and deployed robot infrastructure using
-            microservices architecture with Bazel, utilizing protobuf and gRPC
-            for communication between services`,
-      `Contributed to the company code as a Javascript reviewer`,
+      `Developed new features for a hospitality robot such as localization,
+      overload notification and self-diagnosis, providing users with a smoother experience
+      in restaurant environments`,
+      `Utilized technology stacks for robot development, including React for touchscreen interfaces,
+       ROS for robot control, and Flask for backend services`,
+      `Designed, developed, and deployed a robot network service for Wi-Fi connectivity 
+      and network status uploads to the cloud, utilizing a microservices architecture
+      with Python, Bazel, Protobuf, and gRPC`,
+      `Achieved 100% test coverage for new features through Test Driven Development,
+      preventing bugs that may arise during further development`,
     ],
     skills: [
       'Typescript',
@@ -83,9 +85,15 @@ const EXPERIENCES = [
       },
     ],
     descriptions: [
-      `Developed a user interface for an e-commerce platform serving 3,000+ suppliers and 10 marketplaces, including Hyundai Card and BMW`,
-      `Integrated message templates, previews, and data visualization into a food-delivery chat-bot using RCS technology`,
-      `Created an in-house design system with reusable React components, improving developer productivity and reducing bug rates`,
+      `Developed cart, transaction and order pages for an e-commerce platform serving 3,000+ suppliers and 10 marketplaces,
+       including Hyundai Card and BMW`,
+      `Implemented a dynamic theme website that adjusts layouts, theme colors, and logos based on brand specifications
+      using Server-Side Rendering (SSR) with Next.js, enabling the management of multiple brands within a single project`,
+      `Delivered a food-delivery chatbot service that offers brands customizable templates, previews, and data visualization
+       for RCS (Rich Communication Services) messages,
+       enabling efficient marketing communication with customers`,
+      `Spearheaded the development of an in-house design system using reusable React components, and tested with Storybook and Jest. 
+      This design system improved developer productivity, reduced bug rates by 25%, and ensured consistent UI and logic across the platform`,
     ],
     skills: [
       'Typescript',

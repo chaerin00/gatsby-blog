@@ -28,7 +28,7 @@ const Panel = ({ title, description, children, useAnimation, ...props }) => {
       },
     }),
     {
-      rootMargin: '-10% 0%',
+      rootMargin: '-5% 0%',
     }
   )
 

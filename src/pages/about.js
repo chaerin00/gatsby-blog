@@ -10,6 +10,8 @@ import Education from '../components/about/education'
 import Skills from '../components/about/skills'
 import Contact from '../components/about/contact'
 import Projects from '../components/about/projects'
+import { Helmet } from 'react-helmet'
+import logo from '../../assets/logo.png'
 
 const About = ({ data, location }) => {
   const resumes = data.allMarkdownRemark.edges
@@ -20,18 +22,17 @@ const About = ({ data, location }) => {
 
   return (
     <Layout location={location}>
-      {/* <div
-        style={{
-          marginLeft: `auto`,
-          marginRight: `auto`,
-          maxWidth: rhythm(24),
-          padding: `${rhythm(0.5)} ${rhythm(3 / 4)} ${rhythm(1.5)} ${rhythm(
-            3 / 4
-          )}`,
-        }}
-      >
-        <div dangerouslySetInnerHTML={{ __html: resume.html }} />
-      </div> */}
+      <Helmet>
+        <title>Chaerin.dev</title>
+        <meta name="author" content="Chaerin An " />
+        <meta name="description" content="Chaerin An Portfolio" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.chaerin.dev/about" />
+        <meta property="og:title" content="Chaerin.dev" />
+        <meta property="og:image" content={logo} />
+        <meta property="og:description" content="Chaerin An Portfolio" />
+        <meta property="og:site_name" content="Chaerin.dev" />
+      </Helmet>
       <div className="about">
         <Greeting />
         <Experience />
@@ -40,11 +41,6 @@ const About = ({ data, location }) => {
         <Skills />
         <Contact />
       </div>
-      {/* <Education></Education>
-      <Skills></Skills>
-      <Experience>experiences...</Experience>
-      <Work>Some of the noteworthy projects I have built:</Work>
-      <Contact id="contact">Get in Touch</Contact> */}
     </Layout>
   )
 }

@@ -35,7 +35,6 @@ const Panel = ({ title, description, children, useAnimation, ...props }) => {
   return (
     <Wrapper {...props}>
       <Badge className="badge">{title}</Badge>
-
       <p style={{ fontWeight: 300, marginTop: '16px', textAlign: 'center' }}>
         {description}
       </p>

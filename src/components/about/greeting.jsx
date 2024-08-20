@@ -16,10 +16,10 @@ const Greeting = () => {
     <>
       <h1 style={{ border: 'none' }}>Hi, I'm Chaerin An 👋</h1>
       <p>
-        I am a software engineer with a Bachelor's degree in Computer Science,
-        and I am pursuing a Master's degree in Computer Engineering at UC
-        Irvine. I am passionate about efficient collaboration by writing
-        maintainable, readable, and scalable code.
+        I am a full stack developer with experience in web development and
+        robotics, currently pursuing a Master's degree in Embedded and
+        Cyber-physical Systems at UC Irvine. I am passionate about efficient
+        collaboration by writing maintainable, readable, and scalable code.
         <br /> I also enjoy documenting everything I learn on{' '}
         <Link to="/">my tech blog</Link> to share knowledge.
       </p>

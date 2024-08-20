@@ -2,12 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
+import { property } from 'lodash'
 
-export function Head({ description, lang, meta, keywords, title }) {
+export function Head({ description, lang, meta, keywords, title, image }) {
   return (
     <StaticQuery
       query={detailsQuery}
-      render={data => {
+      render={(data) => {
         const metaDescription =
           description || data.site.siteMetadata.description
         return (
@@ -29,6 +30,10 @@ export function Head({ description, lang, meta, keywords, title }) {
               {
                 property: `og:description`,
                 content: metaDescription,
+              },
+              {
+                property: `og:image`,
+                content: image || data.site.siteMetadata.image,
               },
               {
                 property: `og:type`,
@@ -88,6 +93,7 @@ const detailsQuery = graphql`
         title
         description
         author
+        image
       }
     }
   }

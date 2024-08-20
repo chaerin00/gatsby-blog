@@ -61,7 +61,11 @@ const Index = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteMetadata.title}>
-      <Head title={HOME_TITLE} keywords={siteMetadata.keywords} />
+      <Head
+        title={HOME_TITLE}
+        keywords={siteMetadata.keywords}
+        image={siteMetadata.image}
+      />
       <Bio ref={bioRef} />
       <Category
         categories={categories}

@@ -8,7 +8,7 @@ draft: false
 
 ## Protobuf
 
-Protobuf, Protocol Buffers are language-neutral, platform-neutral extensible mechanisms for serializing structured data. Protocol buffers support generated code in C++, C#, Dart, Go, Java, Kotlin, Objective-C, Python, and Ruby. In this post, python code will be used for examples.
+Protocol Buffers are language-neutral, platform-neutral extensible mechanisms for serializing structured data. Protocol buffers support generated code in C++, C#, Dart, Go, Java, Kotlin, Objective-C, Python, and Ruby. In this post, python code will be used for examples.
 
 For gRPC server, Request/Response messages are defined in `.proto` file. For details of Protobuf, check [this document](https://protobuf.dev)
 
@@ -37,7 +37,7 @@ message ConnectWifiResponse {
 }
 ```
 
-In this example, the NetworkService includes a method called ConnectWifi. The ConnectWifiRequest message has two fields: ssid and an optional password. The ConnectWifiResponse is an empty message. Similar to HTTP status codes (such as 200, 400, 401, 404, 500), gRPC also uses status codes. Instead of creating a success field to indicate whether the request was successful, it's recommended to use gRPC status codes.
+In this example, the `NetworkService` includes a method called `ConnectWifi`. `ConnectWifiRequest` has two fields: `ssid` and an optional `password`. The `ConnectWifiResponse` is an empty message. Similar to HTTP status codes (such as 200, 400, 401, 404, 500), gRPC also uses status codes. Instead of creating a success field to indicate whether the request was successful, it's recommended to use gRPC status codes.
 
 > - INVALID_ARGUMENT
 > - NOT_FOUND

@@ -76,12 +76,7 @@ const EXPERIENCES = [
     positions: [
       {
         title: 'Frontend Developer ',
-        period: 'June 2022 - February 2023',
-        detail: '(part-time)',
-      },
-      {
-        title: 'Frontend Developer Intern',
-        period: 'September 2021 - May 2022',
+        period: 'September 2021 - February 2023',
       },
     ],
     descriptions: [
